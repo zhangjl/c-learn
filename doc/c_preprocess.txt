@@ -1,0 +1,37 @@
+C预处理
+
+1. 文件包含
+#include <...> 从指定的位置搜索
+#include "..." 从源文件当前位置搜索，没有搜索到，再从指定的位置搜索
+
+2. 宏替换(#define)
+    1)一般定义在一行上，如果分成若干行，则每行结果处加入待续符 \
+    2)宏替换不能放在引号中，如果YES是宏替换，则pringf("YES")则YES不起作用
+    3)可以使用#作为前缀进行替换，如：
+    #define dprint(expr) printf(#expr " = %g\n",expr)
+    4)预处理运算符##为宏扩展提供了一种连接实际参数的手段。如果替换文本中的参数与##相邻，则该参数将被实际参数替换，##前后的空白将被删除，并将替换后的结果重新扫描
+    #define paste(front,back) front ## back 
+    5)#undef 取消宏定义
+
+3. 条件包含
+1)
+#if defined(XXXX)
+    ...
+#elif ...
+    ...
+#elif ...
+    ...
+#endif
+
+2)
+#ifndef XXXX
+#define XXXX
+    /* 头文件信息*/
+#endif
+
+等价于
+
+#if !defined(XXXX)
+#define XXXX
+    /* 头文件信息*/
+#endif
